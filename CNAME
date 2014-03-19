@@ -1,3 +1,2 @@
-echo 'atmmap.com' >> CNAME
-# OR
-echo 'www.atmmap.com' >> CNAME
+atmmap.com
+www.atmmap.com
