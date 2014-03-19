@@ -1,0 +1,3 @@
+echo 'atmmap.com' >> source/CNAME
+# OR
+echo 'www.atmmap.com' >> source/CNAME
