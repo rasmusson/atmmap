@@ -3,4 +3,7 @@
   "version" : "0.00(0)",
   "type" : "web",
   "last_update" : "2014-03-24 21:06:23+0000"
+  "permissions": [
+    "geolocation"
+  ]
 }
