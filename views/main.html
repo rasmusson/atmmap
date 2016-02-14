@@ -1,1 +1,12 @@
-<div my-map=""></div>
+<!--div my-map="" ></div-->
+<ui-gmap-google-map center='map.center' zoom='map.zoom' events="map.events">
+  <ui-gmap-marker coords="locationMarker.coords" idKey="locationMarker.id" options="locationMarker.options">
+  </ui-gmap-marker>
+  <ui-gmap-markers
+    models='atms'
+    idKey='id'
+    coords="'coords'"
+    icon="'icon'"
+  >
+  </ui-gmap-markers>
+</ui-gmap-google-map>
