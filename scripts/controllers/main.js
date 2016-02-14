@@ -113,7 +113,6 @@ angular.module('minibankFrontendApp')
 
 $scope.atms = [];
 $scope.atmMap = [];
-
 var lastPosition;
 $scope.locationMarker = {
     id: 0,
@@ -135,7 +134,7 @@ $scope.locationMarker = {
       $scope.loadMarkers = function (position) {
             console.log("Getting atms");
 
-            lastPosition = position.coords;
+            lastPosition = position;
             var baseUrl = 'http://steras-minibank.appspot.com/minibank';
             var url = baseUrl + '?lat=' + position.latitude + '&long=' + position.longitude + '&callback=JSON_CALLBACK';
             var responsePromise = $http.jsonp(url);
@@ -180,14 +179,17 @@ $scope.locationMarker = {
             console.log(distance(position.coords, $scope.lastPosition))
 */
 
-            if (lastPosition == undefined || distance(position.coords, lastPosition) > 500) {
+            if (lastPosition == undefined || distance(userPosition, lastPosition) > 100) {
               $scope.map.center = userPosition;
               $scope.map.zoom = 15;
-              /*console.log("distance")
-              console.log(distance(position.coords, lastPosition))*/
+              if (lastPosition !== undefined) {
+                console.log("distance")
+                              console.log(distance(userPosition, lastPosition))
+              }
+
 
               $scope.loadMarkers(userPosition);
-              lastPosition = position.coords;
+              lastPosition = userPosition;
             }
 
             setUserLocation(userPosition);
