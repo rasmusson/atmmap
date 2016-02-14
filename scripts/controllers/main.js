@@ -180,7 +180,7 @@ $scope.locationMarker = {
             console.log(distance(position.coords, $scope.lastPosition))
 */
 
-            if (lastPosition == undefined || distance(position.coords, lastPosition) > 100) {
+            if (lastPosition == undefined || distance(position.coords, lastPosition) > 500) {
               $scope.map.center = userPosition;
               $scope.map.zoom = 15;
               /*console.log("distance")
