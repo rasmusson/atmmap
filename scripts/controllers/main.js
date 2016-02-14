@@ -173,8 +173,13 @@ $scope.locationMarker = {
           function newLocation (position) {
             var userPosition = { latitude: position.coords.latitude, longitude: position.coords.longitude };
 
+            /*console.log("lastknown")
+            console.log($scope.lastPosition)
+            console.log("distance")
+            console.log(distance(position.coords, $scope.lastPosition))
+*/
 
-            if ($scope.lastPosition !== undefined && distance(position.coords, $scope.lastPosition) > 100) {
+            if ($scope.lastPosition == undefined || distance(position.coords, $scope.lastPosition) > 100) {
               $scope.map.center = userPosition;
               $scope.map.zoom = 15;
               console.log("userpos");
