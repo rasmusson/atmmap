@@ -114,6 +114,7 @@ angular.module('minibankFrontendApp')
 $scope.atms = [];
 $scope.atmMap = [];
 
+var lastPosition;
 $scope.locationMarker = {
     id: 0,
     coords: {
@@ -134,7 +135,7 @@ $scope.locationMarker = {
       $scope.loadMarkers = function (position) {
             console.log("Getting atms");
 
-            $scope.lastPosition = position.coords;
+            lastPosition = position.coords;
             var baseUrl = 'http://steras-minibank.appspot.com/minibank';
             var url = baseUrl + '?lat=' + position.latitude + '&long=' + position.longitude + '&callback=JSON_CALLBACK';
             var responsePromise = $http.jsonp(url);
@@ -173,20 +174,20 @@ $scope.locationMarker = {
           function newLocation (position) {
             var userPosition = { latitude: position.coords.latitude, longitude: position.coords.longitude };
 
-            /*console.log("lastknown")
-            console.log($scope.lastPosition)
-            console.log("distance")
+            console.log("lastknown")
+            console.log(lastPosition)
+            /*console.log("distance")
             console.log(distance(position.coords, $scope.lastPosition))
 */
 
-            if ($scope.lastPosition == undefined || distance(position.coords, $scope.lastPosition) > 100) {
+            if (lastPosition == undefined || distance(position.coords, lastPosition) > 100) {
               $scope.map.center = userPosition;
               $scope.map.zoom = 15;
-              console.log("userpos");
-              console.log(userPosition);
+              /*console.log("distance")
+              console.log(distance(position.coords, lastPosition))*/
 
               $scope.loadMarkers(userPosition);
-              $scope.lastPosition = position.coords;
+              lastPosition = position.coords;
             }
 
             setUserLocation(userPosition);
@@ -225,7 +226,6 @@ $scope.locationMarker = {
           }
 
           function initUserLocation(scope) {
-            console.log(scope);
             if (navigator.geolocation) {
               navigator.geolocation.watchPosition(newLocation);
             }
