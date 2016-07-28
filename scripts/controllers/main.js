@@ -135,7 +135,7 @@ $scope.locationMarker = {
             console.log("Getting atms");
 
             lastPosition = position;
-            var baseUrl = 'http://steras-minibank.appspot.com/minibank';
+            var baseUrl = 'https://steras-minibank.appspot.com/minibank';
             var url = baseUrl + '?lat=' + position.latitude + '&long=' + position.longitude + '&callback=JSON_CALLBACK';
             var responsePromise = $http.jsonp(url);
 
